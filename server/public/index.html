@@ -15,6 +15,13 @@
 			</div>
 		</div>
 	</div>
+	<div id="modal">
+		<div class="dialog">
+			<h1>Submit message?</h1>
+			<p style="display:none" class="sent">Message sent.</p>
+			<p class="buttons"><a href="#" onclick="acceptConfirmDialog(true)">(Yes)</a><a href="#" onclick="acceptConfirmDialog(false)">(No)</a></p>
+		</div>
+	</div>
 	<div id="modal-container"></div>
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	
@@ -50,16 +57,38 @@
 			if (e.keyCode === 13 ) {
 				// check if the string is empty
 				var length = $(this).val().trim().length;
-				if (length > 0) {	
-				    alert("submit");
+				if (length > 0) {
 
-				    //clear field
-				    $(this).val('');
+				    openConfirmDialog();
 				}
 			}
         };
         $('#message').on('keyup', onTextInputChanged);
         $('#message').on('input change', onTextInputChanged);
+
+         /* Dialog Functions */
+        function openConfirmDialog() {
+        	$('#modal').show();
+        	$('#modal .buttons').show();
+		    $('#modal .sent').hide();
+        };
+
+        function acceptConfirmDialog(result) {
+
+        	console.log(result);
+
+        	if (result) {
+		   		//submit & clear field
+		    	$('#message').val('');
+		    	$('#modal .buttons').hide();
+		    	$('#modal .sent').show();
+		    	setTimeout( function() {
+		    		$('#modal').hide();
+		    	},1000);
+	    	} else {
+	    		$('#modal').hide();
+	    	}
+        };
 
 	</script
 	</body>
