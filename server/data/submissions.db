@@ -1,0 +1,12 @@
+{"k":"0000000078","o":"0000000401","v":"001"}
+{"_id":2,"_uid":2,"_dt":1447662348940,"_s":"26c6350636ca793f01f5a63dc0c005cd"}
+{"results":[{"id":"name","type":"string","label":"Your Name","result":"Lutz","length":50},{"id":"place","type":"string","label":"Where are you from?","result":"Berlin","length":50},{"id":"picture","type":"image","label":"Which person(s) would you like to work with in the future? Take a picture of them.","result":"true","length":50,"file":"IMG_2084.JPG"}],"questionId":0,"_id":{"$wrap":"$oid","v":2}}
+{"k":"0000000078","o":"0000000394","v":"001"}
+{"_id":3,"_uid":3,"_dt":1447667390176,"_s":"5a39bdd26e2223e04ab3e22a2d908f7e"}
+{"results":[{"id":"name","type":"string","label":"Your Name","result":"Lutz","length":50},{"id":"place","type":"string","label":"Where are you from?","result":"","length":50},{"id":"picture","type":"image","label":"Which person(s) would you like to work with in the future? Take a picture of them.","result":"true","length":50,"file":"tattoo.jpeg"}],"questionId":0,"_id":{"$wrap":"$oid","v":3}}
+{"k":"0000000078","o":"0000000378","v":"001"}
+{"_id":4,"_uid":4,"_dt":1447667405790,"_s":"8eec4a0f49f4b05a88813632f8aff53a"}
+{"results":[{"id":"name","type":"string","label":"Your Name","result":"Lutz","length":50},{"id":"place","type":"string","label":"Where are you from?","result":"Berlin","length":50},{"id":"picture","type":"image","label":"Which person(s) would you like to work with in the future? Take a picture of them.","result":false,"length":50}],"questionId":0,"_id":{"$wrap":"$oid","v":4}}
+{"k":"0000000078","o":"0000000334","v":"001"}
+{"_id":5,"_uid":5,"_dt":1447667490075,"_s":"7cea559498d49cbf7c2d496d9d7d1c47"}
+{"results":[{"id":"name","type":"string","label":"Your Name","result":"Lutz","length":50},{"id":"place","type":"string","label":"Where are you from?","result":"Telaviv","length":50},{"id":"text","type":"text","label":"Your vision / idea","length":80,"result":"Hier eine Idee Lorem ipsum"}],"questionId":2,"_id":{"$wrap":"$oid","v":5}}
