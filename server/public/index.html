@@ -11,17 +11,18 @@
 		<div id="console">
 			<div class="group">
 				<label for="message" id="message-label">&#62; <span class="keyword">Anxiety</span></label>
-				<textarea id="message" maxlength="160"s></textarea>
+				<textarea id="message" maxlength="160"></textarea>
 			</div>
 		</div>
 	</div>
 	<div id="modal-container"></div>
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	
 	<script>
 
 		//$(window).on('resize',onResize);
 
-        $( document ).ready(function() {
+        $(document).ready(function() {
             onKeywordChanged();
 
             //set focus on text field
@@ -38,11 +39,15 @@
 
 			//remove non asci characters and linebreaks
 			var str = $(this).val();
-			$(this).val(str.replace(/[^\x00-\x09|\x0b-\x7f]/g, ""));
+			str = str.replace(/[^\x00-\x09|\x0b-\x7f]/g, "");
+
+			//dont allow more than 160 characters
+			str = str.substring(0,160);
+
+			$(this).val(str);
 
 			// if pressed enter, submit
 			if (e.keyCode === 13 ) {
-
 				// check if the string is empty
 				var length = $(this).val().trim().length;
 				if (length > 0) {	
@@ -51,10 +56,7 @@
 				    //clear field
 				    $(this).val('');
 				}
-
 			}
-
-
         };
         $('#message').on('keyup', onTextInputChanged);
         $('#message').on('input change', onTextInputChanged);
