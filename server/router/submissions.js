@@ -39,7 +39,7 @@ router.post('/', function (req, res) {
     console.log('Received new Submission');
 
     var data = {
-        message : req.body.message;
+        message : req.body.message
     };
 
     //insert data

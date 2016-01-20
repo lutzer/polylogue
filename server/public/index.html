@@ -1,27 +1,64 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Offline Network</title>
+		<title>Polylogue</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-		<link href="css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> 
-		<link href="css/pure-min.css" type="text/css" rel="stylesheet"/> 
+		<link href="css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
 		<link href="css/spinner.css" type="text/css" rel="stylesheet" >
 	</head>
 	<body role='document'>
 	<div id="container">
-		<div id="content"></div>
+		<div id="console">
+			<div class="group">
+				<label for="message" id="message-label">&#62; <span class="keyword">Anxiety</span></label>
+				<textarea id="message" maxlength="160"s></textarea>
+			</div>
+		</div>
 	</div>
 	<div id="modal-container"></div>
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script>
 
-	<script type="text/javascript" src="js/libs/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="js/libs/jquery.iframe-transport.js"></script>
-   	<script data-main="js/main" src="js/libs/require.js"></script>
-   	<script type="text/javascript">
-   		define('jquery', [], function() {
-		    return jQuery;
-		});
-   	</script>
-	
-		
+		//$(window).on('resize',onResize);
+
+        $( document ).ready(function() {
+            onKeywordChanged();
+
+            //set focus on text field
+            $('#message').focus();
+        });
+
+        function onKeywordChanged() {
+        	// set text area box indent
+        	$('#message').css('text-indent',$('#message-label').width());
+        };
+
+        function onTextInputChanged(e) {
+			var allowed = /[a-zA-Z0-9]/;
+
+			//remove non asci characters and linebreaks
+			var str = $(this).val();
+			$(this).val(str.replace(/[^\x00-\x09|\x0b-\x7f]/g, ""));
+
+			// if pressed enter, submit
+			if (e.keyCode === 13 ) {
+
+				// check if the string is empty
+				var length = $(this).val().trim().length;
+				if (length > 0) {	
+				    alert("submit");
+
+				    //clear field
+				    $(this).val('');
+				}
+
+			}
+
+
+        };
+        $('#message').on('keyup', onTextInputChanged);
+        $('#message').on('input change', onTextInputChanged);
+
+	</script
 	</body>
 </html>
