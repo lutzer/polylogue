@@ -36,21 +36,6 @@ h1 {
 	right:10%;
 }
 
-@media screen and (min-width: $break-small) {
-	#console {
-		left:15%;
-		right:15%;
-	}
-}
-
-@media screen and (min-width: $break-big) {
-   #console {
-		
-		left:20%;
-		right:20%;
-	}
-}
-
 .keyword {
 	color: #DA619D;
 }
@@ -107,10 +92,11 @@ h1 {
 }
 
 .dialog {
-	margin:50px;
+	position: absolute;
 	padding:20px;
-	margin-left: 0 auto;
-	margin-right: 0 auto;
+	left:50px;
+	right:50px;
+	top:10%;
 	background-color: #0B00A2;
     border: 5px solid;
 }
@@ -129,6 +115,36 @@ h1 {
 	margin-right: 1em;
 	color: #ccc;
 	text-decoration: none;
+}
+
+/* media querys */
+
+
+@media screen and (min-width: $break-small) {
+	#console {
+		left:15%;
+		right:15%;
+	}
+
+	.dialog {
+		top:15%;
+		left:20%;
+		right:20%;
+	}
+}
+
+@media screen and (min-width: $break-big) {
+   #console {
+		
+		left:20%;
+		right:20%;
+	}
+
+	.dialog {
+		top:20%;
+		left:30%;
+		right:30%;
+	}
 }
 
 

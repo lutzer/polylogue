@@ -22,5 +22,6 @@ module.exports = function (app) {
 	   app.use(config.baseUrl,express.static('public',options));
 
     app.use(config.baseUrl+'api/submissions', bodyParser.json());
+    app.use(config.baseUrl+'api/submissions', bodyParser.urlencoded({ extended: true }));
     app.use(config.baseUrl+'api/submissions', require('./submissions'));
 };

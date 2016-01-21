@@ -2,12 +2,7 @@
 
 var Config = {
 	
-	uploadPath : __dirname + "/public/uploads", //chmod this path 777
-	uploadTmpPath : __dirname + "/tmp", //chmod this path 777
-	
 	databaseFile : __dirname + "/data", //chmod this path 777
-
-	questionFilePath : __dirname + "/data/questions.json",
 
 	baseUrl : '/app/', // with trailing /
 	servePublicDir : true,

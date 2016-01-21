@@ -27,7 +27,7 @@
 	
 	<script>
 
-		//$(window).on('resize',onResize);
+		var message = '';
 
         $(document).ready(function() {
             onKeywordChanged();
@@ -37,10 +37,11 @@
         });
 
         function onKeywordChanged() {
-        	// set text area box indent
+        	// set text area box indent depending on label size
         	$('#message').css('text-indent',$('#message-label').width());
         };
 
+        /* Terminal functions */
         function onTextInputChanged(e) {
 			var allowed = /[a-zA-Z0-9]/;
 
@@ -58,7 +59,7 @@
 				// check if the string is empty
 				var length = $(this).val().trim().length;
 				if (length > 0) {
-
+					message = str.trim();
 				    openConfirmDialog();
 				}
 			}
@@ -82,13 +83,29 @@
 		    	$('#message').val('');
 		    	$('#modal .buttons').hide();
 		    	$('#modal .sent').show();
+		    	submitMessage(message);
 		    	setTimeout( function() {
 		    		$('#modal').hide();
-		    	},1000);
+		    	},2000);
 	    	} else {
 	    		$('#modal').hide();
 	    	}
+
+	    	// focus on message again
+	    	$('#message').focus();
         };
+
+        function submitMessage() {
+        	$.ajax({
+				type: 'POST',
+				url: 'api/submissions/',
+				data: { message: message },
+				dataType: 'json',
+				error: function(err) {
+					alert(err);
+				}
+			});
+        }
 
 	</script
 	</body>
