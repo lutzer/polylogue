@@ -1,9 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Author: Lutz Reiter, Design Research Lab, Universität der Künste Berlin
+# @Date:   2016-01-21 14:58:30
+# @Last Modified by:   lutz
+# @Last Modified time: 2016-01-25 11:20:50
 
-'''
-	Polylogue Printing Script
-	@author Lutz Reiter, Design Research Lab, UDK Berlin
-	@year 2015
-'''
+# This script sends a message to the adafruit thermal printer.
+# It prints the message vertically on the paper roll.
 
 #!/usr/bin/python
 
