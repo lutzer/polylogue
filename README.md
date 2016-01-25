@@ -11,7 +11,7 @@ An interactive installation for transmediale 2016
 
 ### Python configuration
 
-* `pip install Image
+* `pip install Pillow` auf pi: `sudo pacman -S python2-pillow
 
 ### Other Tools
 

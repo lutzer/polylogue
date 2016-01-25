@@ -3,7 +3,7 @@
 # @Author: Lutz Reiter, Design Research Lab, Universität der Künste Berlin
 # @Date:   2016-01-21 14:58:30
 # @Last Modified by:   lutz
-# @Last Modified time: 2016-01-25 17:18:15
+# @Last Modified time: 2016-01-25 19:12:09
 
 # This script sends a message to the adafruit thermal printer.
 # It prints the message vertically on the paper roll.
@@ -13,6 +13,9 @@
 from lib.Adafruit_Thermal import *
 from lib.FontRenderer import *
 import sys, getopt
+from PIL import Image
+
+PRINTER_WIDTH_PIXELS = 384 # in pixels
 
 # read arguments
 def main(argv):
@@ -40,11 +43,23 @@ def sendToPrinter(message):
 
    # print messsage character by character
    for character in list(message):
-      printer.printImage(font.getCharacterImage(character))
+
+      symbol = font.getCharacterImage(character)
+      symbol = symbol.rotate(270,0,True)
+      symbol = font.makeBgWhite(symbol)
+
+      # offset rotated character
+      #img = Image.new("RGB", (PRINTER_WIDTH_PIXELS, symbol.size[0]), (255, 255, 255))
+      #img.paste(symbol, box=(( PRINTER_WIDTH_PIXELS - font.fontSize() ) / 2, 0))
+
+      printer.printImage(symbol)
 
    #printer.println(message)
 
-   printer.sleep();
+   # give out some paper
+   printer.feed(3)
+
+   printer.sleep()
 
    print 'done.'
 
