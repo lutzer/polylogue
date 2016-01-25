@@ -3,7 +3,7 @@
 # @Author: Lutz Reiter, Design Research Lab, Universität der Künste Berlin
 # @Date:   2016-01-21 14:58:30
 # @Last Modified by:   lutz
-# @Last Modified time: 2016-01-25 11:20:50
+# @Last Modified time: 2016-01-25 17:18:15
 
 # This script sends a message to the adafruit thermal printer.
 # It prints the message vertically on the paper roll.
@@ -11,6 +11,7 @@
 #!/usr/bin/python
 
 from lib.Adafruit_Thermal import *
+from lib.FontRenderer import *
 import sys, getopt
 
 # read arguments
@@ -33,10 +34,15 @@ def sendToPrinter(message):
    print 'Printing message:', message
 
    printer = Adafruit_Thermal("/dev/ttyAMA0", 19200, timeout=5)
-   printer.wake() 
+   printer.wake()
 
-   # print messsage
-   printer.println(message)
+   font = FontRenderer('font/inconsolata.png','font/inconsolata.json') 
+
+   # print messsage character by character
+   for character in list(message):
+      printer.printImage(font.getCharacterImage(character))
+
+   #printer.println(message)
 
    printer.sleep();
 
