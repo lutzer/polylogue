@@ -14,10 +14,10 @@ module.exports = function (http) {
 	    // Server event handlers
 
 	    function submissionAddedHandler(doc) {
-	    	console.log('send submidssion:new');
-		    socket.emit('submissions:new',{data: doc});
+	    	console.log('socket emit:<submission:new>');
+		    socket.emit('submission:new',{data: doc});
 	    }
-		appEvents.on('submission:added', submissionAddedHandler);
+		appEvents.on('submission:new', submissionAddedHandler);
 
 		socket.on('error', function(err) {
 	    	console.log(err);

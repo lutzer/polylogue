@@ -18,15 +18,15 @@ var Submission = {
 			var msg = data.message.toString().replace(/"/g, '\\"');
 			console.log(msg);
 
-			var process = exec('/bin/python2 /home/pi/scripts/printer/polylogue.py -m "'+msg+'"',
-				(error, stdout, stderr) => {
-					console.log(stdout);	
-					if (error !== null) {
-			      		console.log(`exec error: ${error}`);
-			    	}
-				},
-				{ uid: 'root' }
-			);
+			// var process = exec('/bin/python2 /home/pi/scripts/printer/polylogue.py -m "'+msg+'"',
+			// 	{ cwd : '/home/pi/scripts/printer'},
+			// 	function(error, stdout, stderr) {
+			// 		console.log(stdout);	
+			// 		if (error !== null) {
+			//       		console.log(`exec error: ${error}`);
+			//     	}
+			// 	}
+			// );
 		}
 	},
 

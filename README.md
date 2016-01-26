@@ -11,7 +11,8 @@ An interactive installation for transmediale 2016
 
 ### Python configuration
 
-* `pip install Pillow` auf pi: `sudo pacman -S python2-pillow
+* `pip2 install Pillow` auf pi: `sudo pacman -S python2-pillow
+* `pip2 install socketIO-client`
 
 ### Other Tools
 

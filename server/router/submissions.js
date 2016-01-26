@@ -55,7 +55,7 @@ router.post('/', function (req, res) {
         var objectId = object._id;
 
         // trigger socket event
-        appEvents.emit('submissions:new',object)
+        appEvents.emit('submission:new',object)
 
         // send answer
         res.send(object);
