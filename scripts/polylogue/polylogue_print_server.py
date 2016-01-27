@@ -3,7 +3,7 @@
 # @Author: Lutz Reiter, Design Research Lab, Universität der Künste Berlin
 # @Date:   2016-01-26 12:40:53
 # @Last Modified by:   lutz
-# @Last Modified time: 2016-01-27 17:31:01
+# @Last Modified time: 2016-01-27 17:34:55
 
 from __future__ import with_statement
 from socketIO_client import SocketIO
@@ -38,10 +38,7 @@ def init():
    fontRenderer = FontRenderer('font/inconsolata.png','font/inconsolata.json',FONT_WIDTH)  
 
    # init print feed with 3 lines
-   printFeed = PrintFeed(PRINTER_COLUMNS) 
-   printFeed.addMessage("111111")
-   printFeed.addMessage("222222")
-   printFeed.addMessage("333333")
+   printFeed = PrintFeed(PRINTER_COLUMNS)
 
    # start socket connection
    socketThread = Sockethread('localhost',8081)
