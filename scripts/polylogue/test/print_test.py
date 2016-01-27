@@ -3,35 +3,42 @@
 # @Author: Lutz Reiter, Design Research Lab, Universität der Künste Berlin
 # @Date:   2016-01-26 12:40:53
 # @Last Modified by:   lutz
-# @Last Modified time: 2016-01-26 17:43:29
+# @Last Modified time: 2016-01-27 13:59:57
 
 from __future__ import with_statement
 from socketIO_client import SocketIO
 import time
 from threading import Thread,Lock
 
-from lib.SocketThread import *
-from lib.PrintFeed import *
+from ..lib.SocketThread import *
+from ..lib.PrintFeed import *
 
 socketThread = None
 printFeed = None
 
 def init():
 	global socketThread, printFeed 
+	printFeed = PrintFeed(3)
+
+	# start socket connection
 	socketThread = Sockethread('localhost',8081)
 	socketThread.start()
-	printFeed = PrintFeed(3,384)
 
 # check the socketThread if there are any new messages received
 def loop():
 	global socketThread, printFeed
 	queue = socketThread.getQueue()
-	socketThread.clearQueue()
 	for submission in queue:
 		printFeed.addMessage(submission['data']['message'])
-	column = printFeed.getNextColumn()
-	print column
-	time.sleep(2)
+
+	col = printFeed.getNextColumn()
+
+	if any(col):
+		print col
+	else:
+		print "empty columns"
+		
+	time.sleep(1.5)
 
 def stop():
 	global socketThread

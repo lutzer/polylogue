@@ -54,7 +54,7 @@ router.post('/', function (req, res) {
         object = docs[0];
         var objectId = object._id;
 
-        // trigger socket event
+        // trigger socket event and send mesagge to printer
         appEvents.emit('submission:new',object)
 
         // send answer

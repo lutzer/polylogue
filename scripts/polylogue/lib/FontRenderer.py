@@ -3,7 +3,7 @@
 # @Author: Lutz Reiter, Design Research Lab, Universität der Künste Berlin
 # @Date:   2016-01-25 17:10:20
 # @Last Modified by:   lutz
-# @Last Modified time: 2016-01-25 18:56:48
+# @Last Modified time: 2016-01-27 16:58:39
 
 # this script will take a bitmap file and crop the symbols from it,
 # corresponding to the values stored in the json file.
@@ -14,9 +14,10 @@
 from PIL import Image
 import json
 
+
 class FontRenderer:
 
-	def __init__(self, imagePath, jsonPath, useFontMetrics = True):
+	def __init__(self, imagePath, jsonPath, fontWidth, useFontMetrics = True):
 
 		# load image
 		self.symbolImage = Image.open(imagePath) 
@@ -26,6 +27,7 @@ class FontRenderer:
 		    self.charTable = json.load(data_file)
 
 		self.fontHeight = self.charTable['info']['size']
+		self.fontWidth = fontWidth
 
 		self.useFontMetrics = useFontMetrics
 
@@ -44,7 +46,7 @@ class FontRenderer:
 
 		# correct font metric
 		if (self.useFontMetrics):
-			size = ( charData['xadvance'], self.fontHeight)
+			size = ( self.fontWidth, self.fontHeight)
 			img = Image.new("RGBA", size, (255,255,255))
 			img.paste(symbol, box=(charData['xoffset'],charData['yoffset']) )
 			symbol = img
@@ -53,6 +55,9 @@ class FontRenderer:
 
 	def fontSize(self):
 		return self.fontHeight
+
+	def characterWidth(self):
+		return self.fontWidth
 
 	@staticmethod
 	def makeBgWhite(img):

@@ -15,7 +15,7 @@ module.exports = function (http) {
 
 	    function submissionAddedHandler(doc) {
 	    	console.log('socket emit:<submission:new>');
-		    socket.emit('submission:new',{data: doc});
+		    socket.emit('submission:new',{data: doc}); // this will send the data to the python printserver
 	    }
 		appEvents.on('submission:new', submissionAddedHandler);
 

@@ -3,7 +3,7 @@
 # @Author: Lutz Reiter, Design Research Lab, Universität der Künste Berlin
 # @Date:   2016-01-26 17:02:11
 # @Last Modified by:   lutz
-# @Last Modified time: 2016-01-26 17:39:01
+# @Last Modified time: 2016-01-27 11:42:54
 
 from __future__ import with_statement
 from socketIO_client import SocketIO
@@ -41,12 +41,11 @@ class Sockethread(Thread):
 		with self.lock:
 			self.queue.append(data)
 
-	# returns copy of queue
+	# returns copy of queue and clears it
 	def getQueue(self):
 		with self.lock:
-			return list(self.queue)
+			messages = list(self.queue)
+			self.queue[:] = [] #clear queue
+			return messages
 
-	# deletes queue
-	def clearQueue(self):
-		with self.lock:
-			self.queue[:] = [] #empty list
+			
