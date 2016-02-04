@@ -3,7 +3,7 @@
 # @Author: Lutz Reiter, Design Research Lab, Universität der Künste Berlin
 # @Date:   2016-01-26 12:40:53
 # @Last Modified by:   lutz
-# @Last Modified time: 2016-01-27 17:34:55
+# @Last Modified time: 2016-02-04 17:23:32
 
 from __future__ import with_statement
 from socketIO_client import SocketIO
@@ -16,7 +16,7 @@ from lib.FontRenderer import *
 from lib.SocketThread import *
 from lib.PrintFeed import *
 
-FONT_WIDTH = 32 #32 px monspace font
+FONT_WIDTH = 39 #32 px monspace font
 
 PRINTER_PAPER_WIDTH = 300 # in pixels
 PRINTER_PAPER_MARGIN = 75 # distance to the border of the printer
@@ -35,7 +35,7 @@ def init():
    printer = Adafruit_Thermal("/dev/ttyAMA0", 19200, timeout=5)
    
    #load font
-   fontRenderer = FontRenderer('font/inconsolata.png','font/inconsolata.json',FONT_WIDTH)  
+   fontRenderer = FontRenderer('font/cutivemono.png','font/cutivemono.json',FONT_WIDTH)  
 
    # init print feed with 3 lines
    printFeed = PrintFeed(PRINTER_COLUMNS)
