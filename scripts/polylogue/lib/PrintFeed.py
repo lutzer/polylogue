@@ -3,7 +3,7 @@
 # @Author: Lutz Reiter, Design Research Lab, Universität der Künste Berlin
 # @Date:   2016-01-26 16:07:22
 # @Last Modified by:   lutz
-# @Last Modified time: 2016-01-27 13:50:09
+# @Last Modified time: 2016-02-03 17:32:56
 
 
 class Message:
@@ -11,9 +11,8 @@ class Message:
 	def __init__(self, text):
 		self.text = text
 
-		#add trailing space
-		if not (self.text.endswith(' ')):
-			self.text += ' '
+		#add 7 trailing spaces
+		self.text += "       "
 
 		self.textPosition = 0
 

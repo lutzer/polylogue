@@ -10,8 +10,11 @@
 	<div id="container">
 		<div id="console">
 			<div class="group">
-				<label for="message" id="message-label">&#62; <span class="keyword">Anxiety</span></label>
+				<label for="message" id="message-label"> <span class="keyword">polylogue </span>&#62;</label>
 				<textarea id="message" maxlength="160"></textarea>
+				<div id="hint">
+					<p>(Type return to submit)</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -19,12 +22,14 @@
 		<div class="dialog">
 			<h1>Submit message?</h1>
 			<p style="display:none" class="sent">Message sent.</p>
-			<p class="buttons"><a href="#" onclick="acceptConfirmDialog(true)">(Yes)</a><a href="#" onclick="acceptConfirmDialog(false)">(No)</a></p>
+			<p class="buttons"><a href="#" onclick="acceptConfirmDialog(true)">(Y)es</a><a href="#" onclick="acceptConfirmDialog(false)">(N)o</a>
+			<input id="button-input" type="text" class="ui-hidden-accessible"></p>
+
 		</div>
 	</div>
 	<div id="modal-container"></div>
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-	
+	<script type="text/javascript" src="js/autosize.min.js"></script>
 	<script>
 
 		var message = '';
@@ -33,7 +38,11 @@
             onKeywordChanged();
 
             //set focus on text field
-            $('#message').focus();
+            $('#message').select();
+
+            jQuery('body').bind('focusin focus', function(e){
+ 				e.preventDefault();
+			});
         });
 
         function onKeywordChanged() {
@@ -52,7 +61,15 @@
 			//dont allow more than 160 characters
 			str = str.substring(0,160);
 
+			if (str.length > 0)
+				$('#button').show();
+			else
+				$('#button').hide();
+
 			$(this).val(str);
+
+			//autosize textarea
+			autosize($('#message'));
 
 			// if pressed enter, submit
 			if (e.keyCode === 13 ) {
@@ -64,19 +81,40 @@
 				}
 			}
         };
-        $('#message').on('keyup', onTextInputChanged);
+        $('#message').on('keypress', onTextInputChanged);
         $('#message').on('input change', onTextInputChanged);
+
+
+        function onMessageBlur() {
+        	var str = $(this).val();
+
+        	if (str.length > 0)
+        		$('#hint').show();
+        	else
+        		$('#hint').hide();
+        }
+        $('#message').on('blur',onMessageBlur);
 
          /* Dialog Functions */
         function openConfirmDialog() {
         	$('#modal').show();
         	$('#modal .buttons').show();
 		    $('#modal .sent').hide();
+
+		    $('#button-input').focus();
         };
+
+        function onDialogKeyPress(e) {
+        	if (e.charCode == 121) //y 
+        		acceptConfirmDialog(true);
+        	else if (e.charCode == 110) //n
+        		acceptConfirmDialog(false);
+        };
+        $('#button-input').on('keypress', onDialogKeyPress);
 
         function acceptConfirmDialog(result) {
 
-        	console.log(result);
+			$('#hint').hide();
 
         	if (result) {
 		   		//submit & clear field
@@ -86,13 +124,16 @@
 		    	submitMessage(message);
 		    	setTimeout( function() {
 		    		$('#modal').hide();
-		    	},2000);
+		    	},3000);
 	    	} else {
 	    		$('#modal').hide();
 	    	}
 
 	    	// focus on message again
-	    	$('#message').focus();
+	    	setTimeout(function() {
+	    		$('#message').focus();
+	    	},100);
+	    	
         };
 
         function submitMessage() {
