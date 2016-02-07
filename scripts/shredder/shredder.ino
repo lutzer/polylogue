@@ -48,10 +48,11 @@ void setShredderDirection(ShredderDirection direction) {
       servo.attach(SERVO_PIN);
     servo.write(180);
   } else { // stop servo
-    if (servo.attached()) {
+    /*if (servo.attached()) {
       servo.write(90);
       servo.detach();
-    }
+    }*/
+    servo.write(90);
   } 
 }
 
