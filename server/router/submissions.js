@@ -44,23 +44,11 @@ router.post('/', function (req, res) {
         message : req.body.message
     };
 
-    //insert data
-    submissions.create(data, function(err, docs) {
+    // trigger socket event and send mesagge to printer
+    appEvents.emit('submission:new',data)
 
-        utils.handleError(err);
-
-        console.log('Submission added to database');
-
-        object = docs[0];
-        var objectId = object._id;
-
-        // trigger socket event and send mesagge to printer
-        appEvents.emit('submission:new',object)
-
-        // send answer
-        res.send(object);
-    });
-    
+    // send answer
+    res.send(data);
 });
 
 module.exports = router;
