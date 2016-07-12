@@ -30,28 +30,32 @@ An interactive installation for transmediale 2016
 
 * start node server automatically by calling `pm2 start app.js` and then `pm2 save`
 * create python startup script `nano /etc/systemd/system/polylogue.service`
-	
-```
-[Unit]
 
-Description=Launches polylogue print server script
 
-After=network.target
 
-[Service]
+* ``` 
+  [Unit]
+  
+  Description=Launches polylogue print server script
+  
+  After=network.target
+  
+  [Service]
+  
+  Type=simple
+  
+  WorkingDirectory=/home/pi/scripts/polylogue/
+  
+  ExecStart=/bin/python2 polylogue_print_server.py
+  
+  RemainAfterExit=true
+  
+  [Install]
+  
+  WantedBy=multi-user.target
+  ```
+  
+  ​
 
-Type=simple
-
-WorkingDirectory=/home/pi/scripts/polylogue/
-
-ExecStart=/bin/python2 polylogue_print_server.py
-
-RemainAfterExit=true
-
-[Install]
-
-WantedBy=multi-user.target
-```
 
 * `sudo systemctl enable polylogue.servive` to automatically start
-
