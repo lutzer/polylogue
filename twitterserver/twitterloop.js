@@ -34,7 +34,11 @@ module.exports = {
 			  _.forEach(tweets.statuses, (tweet) => {
 			  		if (tweet.id != this.lastId) {
 						console.log('Received: '+tweet.text+", id:"+tweet.id);
-						appEvents.emit('submission:new', tweet.text);
+
+						var data = {
+					        message : tweet.text
+					    };
+						appEvents.emit('submission:new', data);
 			  		}
 			  });
 
