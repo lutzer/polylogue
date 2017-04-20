@@ -35,26 +35,26 @@ An interactive installation for transmediale 2016
 
 * ``` 
   [Unit]
-  
+
   Description=Launches polylogue print server script
-  
+
   After=network.target
-  
+
   [Service]
-  
+
   Type=simple
-  
+
   WorkingDirectory=/home/pi/scripts/polylogue/
-  
+
   ExecStart=/bin/python2 polylogue_print_server.py
-  
+
   RemainAfterExit=true
-  
+
   [Install]
-  
+
   WantedBy=multi-user.target
   ```
-  
+
   ​
 
 
@@ -67,3 +67,18 @@ An interactive installation for transmediale 2016
 * go to network -> wifi -> "the wan wifi" -> disable
 * login by ssh : `ssh root@192.168.72.1`
   * uncomment line in */etc/dnsmasq.conf*: `address=/#/192.168.72.2`
+
+### edit tag
+
+
+
+edit `nano ~/polylogue/twitterserver/config.js` change
+
+```
+tags : '#rp17' // see https://dev.twitter.com/rest/public/search for how to setup the search query
+
+	/*
+		#love OR #hate : one or the other
+		#love #hate : contains both tags
+	*/
+```

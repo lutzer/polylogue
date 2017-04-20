@@ -34,7 +34,10 @@ class FontRenderer:
 	def getCharacterImage(self, character):
 
 		# get char from table
-		charData = self.charTable['chars'][str(ord(character))]
+		try:
+			charData = self.charTable['chars'][str(ord(character))]
+		except IndexError:
+			charData = self.charTable['chars'][str(127)]
 
 		# crop sybol img
 		symbol = self.symbolImage.crop([

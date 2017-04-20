@@ -51,7 +51,7 @@ def loop():
    # get new messages from node server and add messaged to queue
    queue = socketThread.getQueue()
    for submission in queue:
-      printFeed.addMessage(submission['data']['message'])
+      printFeed.addMessage(removeNonAsciChars(submission['data']['message']))
 
    col = printFeed.getNextColumn()
 
@@ -63,6 +63,9 @@ def loop():
 def stop():
    global socketThread
    socketThread.stop()
+
+def removeNonAsciChars(text):
+   return ''.join([i if ord(i) < 128 else ' ' for i in text])
 
 def sendToPrinter(column):
    global printer, fontRenderer
