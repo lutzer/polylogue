@@ -8,7 +8,11 @@
 from __future__ import with_statement
 from socketIO_client import SocketIO
 import time
+import logging
 from threading import Thread,Lock
+from pprint import pformat
+
+logger = logging.getLogger(__name__)
 
 socketThread = None
 
@@ -25,17 +29,17 @@ class Sockethread(Thread):
 		Thread.__init__(self)
 
 	def run(self):
-		print 'started Socket Thread.'
+		logger.info('started Socket Thread.');
 		self.socket.on('submission:new', self.onNewSubmission)
 		while (self.running):
 			self.socket.wait(seconds=1); #TODO: test if this is ok
 
 	def stop(self):
-		print 'stopped Socket Thread.'
+		logger.info('stopped Socket Thread.')
 		self.running = False
 
 	def onNewSubmission(self,data):
-		print "Received new submission"
+		logger.info("Received new submission: " + pformat(data))
 
 		# add submission to queue
 		with self.lock:

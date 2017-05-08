@@ -20,6 +20,11 @@ An interactive installation for transmediale 2016
 * font generation by SpriteFontBuilder for mac
 * font conversion with this script: <https://github.com/playcanvas/fonts/blob/master/fnt_to_json.py>
 
+
+### Create virtual Serial Port
+
+
+
 ## Call Test scripts
 
 * Within scripts dir, execute: `python -m polylogue.test.print_test.py`
@@ -54,7 +59,6 @@ An interactive installation for transmediale 2016
 
   WantedBy=multi-user.target
   ```
-
   ​
 
 

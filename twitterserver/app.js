@@ -10,13 +10,18 @@ global.r_require = function(name) {
     return require(__dirname + name);
 }
 
-/*Define dependencies.*/
+var config = r_require('/config.js');
 
+/* Load Settings */
+global.settings = r_require('/utils/settings.js');
+settings.read(config.settingsFile);
+
+/*Define dependencies.*/
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 
-var config = r_require('/config.js');
+
 
 /* Load Sockets */
 var sockets = r_require('/sockets')(http);

@@ -13,7 +13,10 @@
 
 from PIL import Image
 import json
+import logging
+from pprint import pformat
 
+logger = logging.getLogger(__name__)
 
 class FontRenderer:
 
@@ -33,10 +36,13 @@ class FontRenderer:
 
 	def getCharacterImage(self, character):
 
+		logger.debug("Printing char: " + character);
+
 		# get char from table
 		try:
 			charData = self.charTable['chars'][str(ord(character))]
-		except IndexError:
+		except (IndexError, KeyError) as err:
+			logger.error("Error: " + pformat(err))
 			charData = self.charTable['chars'][str(127)]
 
 		# crop sybol img

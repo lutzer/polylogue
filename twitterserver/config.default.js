@@ -13,10 +13,10 @@ var Config = {
 
 	tags : '#ZDFroll', // see https://dev.twitter.com/rest/public/search for how to setup the search query
 
-	consumer_key: 'Du57s8tX7GazSMv2ri3u0vI3j',
-  	consumer_secret: 'nkd3DXo6EiXhURKVRfdQ4dmnCkBpJqf0uJxOFE61xLHckBwjcg',
-  	access_token_key: '855059771736641537-DkvMwItqbsCeM4KMMWwraDb1lpxwxx6',
-  	access_token_secret: 'KVvmfX7rLCh5jdJveyPqmM0K8vEk8eCJpdXtkox7snlgW'
+	consumer_key: '--',
+  	consumer_secret: '--',
+  	access_token_key: '--',
+  	access_token_secret: '--'
 
 	/*
 		#love OR #hate : one or the other
