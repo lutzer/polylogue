@@ -21,8 +21,6 @@ An interactive installation for transmediale 2016
 * font conversion with this script: <https://github.com/playcanvas/fonts/blob/master/fnt_to_json.py>
 
 
-### Create virtual Serial Port
-
 
 
 ## Call Test scripts
@@ -66,6 +64,8 @@ An interactive installation for transmediale 2016
 
 ## Twitter polylogue
 
+* go to twittersever dir, run`npm install` and  `cp config.default.js config.js`
+
 ### for normal polylogue disable internet and redirect all trafic to rasp pi
 
 * go to network -> wifi -> "the wan wifi" -> disable
@@ -73,8 +73,6 @@ An interactive installation for transmediale 2016
   * uncomment line in */etc/dnsmasq.conf*: `address=/#/192.168.72.2`
 
 ### edit tag
-
-
 
 edit `nano ~/polylogue/twitterserver/config.js` change
 
